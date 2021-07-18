@@ -1,0 +1,21 @@
+.button {
+  display: inline-block;
+  margin: 5px 15px;
+  padding: 2px;
+  cursor: pointer;
+
+  border-radius: 2px;
+  border: 1px solid;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #ffffff;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #199ed2;
+}
+
+.listItem {
+  align-items: center;
+}

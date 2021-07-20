@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import s from './ContactForm.module.css';
-
 class ContactForm extends Component {
   state = {
     name: '',
@@ -17,6 +16,7 @@ class ContactForm extends Component {
     e.preventDefault();
 
     this.props.onSubmit(this.state);
+
     this.reset();
   };
 
@@ -29,31 +29,33 @@ class ContactForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Name{' '}
-          <input
-            type="text"
-            name="name"
-            value={name}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-            onChange={this.handleInputOnChange}
-          />
-        </label>
+        <div className={s.formGroup}>
+          <label>
+            Name{' '}
+            <input
+              type="text"
+              name="name"
+              value={name}
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+              required
+              onChange={this.handleInputOnChange}
+            />
+          </label>
 
-        <label>
-          Number{' '}
-          <input
-            type="tel"
-            name="number"
-            value={number}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-            required
-            onChange={this.handleInputOnChange}
-          />
-        </label>
+          <label>
+            Number{' '}
+            <input
+              type="tel"
+              name="number"
+              value={number}
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+              required
+              onChange={this.handleInputOnChange}
+            />
+          </label>
+        </div>
 
         <button type="submit" className={s.button}>
           Add contact

@@ -5,7 +5,6 @@ import ContactList from './components/ContactList';
 import initialContacts from './data/contacts.json';
 import { v4 as uuidv4 } from 'uuid';
 import Filter from './components/Filter';
-
 class App extends Component {
   state = {
     contacts: initialContacts,
@@ -32,27 +31,6 @@ class App extends Component {
       }));
     }
   };
-
-  // addContact = (task) => {
-  //   const searchSameName = this.state.contacts
-  //     .map((cont) => cont.name)
-  //     .includes(task.name);
-
-  //   if (searchSameName) {
-  //     alert(`${task.name} is already in contacts`);
-  //   } else if (task.name.length === 0) {
-  //     alert("Fields must be filled!");
-  //   } else {
-  //     const contact = {
-  //       ...task,
-  //       id: uuidv4(),
-  //     };
-
-  //     this.setState((prevState) => ({
-  //       contacts: [...prevState.contacts, contact],
-  //     }));
-  //   }
-  // };
 
   onDeleteContact = contactId => {
     this.setState(prevState => {

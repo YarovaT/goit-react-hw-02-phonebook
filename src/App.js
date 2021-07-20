@@ -15,15 +15,44 @@ class App extends Component {
   contactId = uuidv4();
 
   formSubmitHandler = newContact => {
-    const addContact = {
-      ...newContact,
-      id: this.contactId,
-    };
+    const similarName = this.state.contacts
+      .map(contact => contact.name)
+      .includes(newContact.name);
 
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, addContact],
-    }));
+    if (similarName) {
+      alert(`${newContact.name}is already in phonebook`);
+    } else {
+      const addContact = {
+        ...newContact,
+        id: this.contactId,
+      };
+
+      this.setState(({ contacts }) => ({
+        contacts: [...contacts, addContact],
+      }));
+    }
   };
+
+  // addContact = (task) => {
+  //   const searchSameName = this.state.contacts
+  //     .map((cont) => cont.name)
+  //     .includes(task.name);
+
+  //   if (searchSameName) {
+  //     alert(`${task.name} is already in contacts`);
+  //   } else if (task.name.length === 0) {
+  //     alert("Fields must be filled!");
+  //   } else {
+  //     const contact = {
+  //       ...task,
+  //       id: uuidv4(),
+  //     };
+
+  //     this.setState((prevState) => ({
+  //       contacts: [...prevState.contacts, contact],
+  //     }));
+  //   }
+  // };
 
   onDeleteContact = contactId => {
     this.setState(prevState => {

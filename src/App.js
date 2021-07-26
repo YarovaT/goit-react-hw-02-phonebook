@@ -5,6 +5,8 @@ import ContactList from './components/ContactList';
 import initialContacts from './data/contacts.json';
 import { v4 as uuidv4 } from 'uuid';
 import Filter from './components/Filter';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   state = {
@@ -19,13 +21,20 @@ class App extends Component {
       .map(contact => contact.name.toLowerCase())
       .includes(newContact.name.toLowerCase());
 
+    const notifyWarn = () =>
+      toast.warn(`${newContact.name} is already in phonebook !`);
+
+    const notifySuccess = () =>
+      toast.success(`${newContact.name} is added in phonebook !`);
+
     if (similarName) {
-      alert(`${newContact.name}is already in phonebook`);
+      notifyWarn();
     } else {
       const addContact = {
         ...newContact,
         id: this.contactId,
       };
+      notifySuccess();
 
       this.setState(({ contacts }) => ({
         contacts: [...contacts, addContact],
@@ -71,6 +80,15 @@ class App extends Component {
         <ContactList
           contacts={visibleContacts}
           onDeleteContact={this.onDeleteContact}
+        />
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
         />
       </div>
     );

@@ -5,6 +5,7 @@ import ContactList from './components/ContactList';
 import initialContacts from './data/contacts.json';
 import { v4 as uuidv4 } from 'uuid';
 import Filter from './components/Filter';
+
 class App extends Component {
   state = {
     contacts: initialContacts,
@@ -15,8 +16,8 @@ class App extends Component {
 
   formSubmitHandler = newContact => {
     const similarName = this.state.contacts
-      .map(contact => contact.name)
-      .includes(newContact.name);
+      .map(contact => contact.name.toLowerCase())
+      .includes(newContact.name.toLowerCase());
 
     if (similarName) {
       alert(`${newContact.name}is already in phonebook`);
